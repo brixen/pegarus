@@ -56,3 +56,15 @@ describe "Pegarus.pattern" do
     lambda { Pegarus.pattern(4.2) }.should raise_error(Pegarus::ParseError)
   end
 end
+
+describe "Pattern#/" do
+  it "returns a Choice" do
+    p1 = Pegarus.pattern(1)
+    p2 = Pegarus.pattern("a")
+    pattern = p1 / p2
+
+    pattern.should be_an_instance_of(Pegarus::Choice)
+    pattern.first.should equal(p1)
+    pattern.second.should equal(p2)
+  end
+end

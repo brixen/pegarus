@@ -35,5 +35,9 @@ module Pegarus
       # every pattern is the root of a tree
       # setup (and equiv of 'S / . S') then call #bytecode(g)
     end
+
+    def /(other)
+      Choice.new self, other
+    end
   end
 end
