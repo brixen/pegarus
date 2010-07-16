@@ -44,6 +44,10 @@ module Pegarus
       Concatenation.new self, other
     end
 
+    def -(other)
+      Difference.new self, other
+    end
+
     def +@
       If.new self
     end

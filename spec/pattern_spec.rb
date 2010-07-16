@@ -98,3 +98,15 @@ describe "Pattern#+" do
     pattern.second.should equal(p2)
   end
 end
+
+describe "Pegarus#-" do
+  it "returns a Difference of two patterns" do
+    p1 = Pegarus.pattern(1)
+    p2 = Pegarus.pattern("a")
+    pattern = p1 - p2
+
+    pattern.should be_an_instance_of(Pegarus::Difference)
+    pattern.first.should equal(p1)
+    pattern.second.should equal(p2)
+  end
+end
