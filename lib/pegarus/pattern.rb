@@ -39,5 +39,18 @@ module Pegarus
     def /(other)
       Choice.new self, other
     end
+
+    def +(other)
+      Concatenation.new self, other
+    end
+  end
+
+  class BinaryOp < Pattern
+    attr_accessor :first, :second
+
+    def initialize(first, second)
+      @first = Pegarus.pattern first
+      @second = Pegarus.pattern second
+    end
   end
 end
