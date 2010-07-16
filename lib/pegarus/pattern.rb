@@ -43,6 +43,18 @@ module Pegarus
     def +(other)
       Concatenation.new self, other
     end
+
+    def +@
+      If.new self
+    end
+  end
+
+  class UnaryOp < Pattern
+    attr_accessor :pattern
+
+    def initialize(pattern)
+      @pattern = Pegarus.pattern pattern
+    end
   end
 
   class BinaryOp < Pattern

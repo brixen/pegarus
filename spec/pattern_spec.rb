@@ -57,6 +57,15 @@ describe "Pegarus.pattern" do
   end
 end
 
+describe "Pattern#+@" do
+  it "returns an If pattern" do
+    p1 = Pegarus.pattern(1)
+    pattern = +p1
+
+    pattern.should be_an_instance_of(Pegarus::If)
+  end
+end
+
 describe "Pattern#/" do
   it "returns a Choice of two patterns" do
     p1 = Pegarus.pattern(1)
