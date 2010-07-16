@@ -47,6 +47,10 @@ module Pegarus
     def +@
       If.new self
     end
+
+    def -@
+      Unless.new self
+    end
   end
 
   class UnaryOp < Pattern
