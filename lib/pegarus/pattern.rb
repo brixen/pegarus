@@ -48,6 +48,10 @@ module Pegarus
       Difference.new self, other
     end
 
+    def *(other)
+      Product.new self, other
+    end
+
     def +@
       If.new self
     end
