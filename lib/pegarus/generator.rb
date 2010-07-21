@@ -16,14 +16,13 @@ module Pegarus
       push_local 1
     end
 
-    def set_index(n)
-      push n
+    def set_index
       set_local 1
+      pop
     end
 
-    def inc_index(n=1)
+    def inc_index
       push_local 1
-      push n
       send :+, 1, false
       set_local 1
       pop

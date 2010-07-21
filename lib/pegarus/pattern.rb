@@ -51,7 +51,8 @@ module Pegarus
       g.local_count = 2
       g.local_names = [:subject, :index]
 
-      g.set_index 0
+      g.push 0
+      g.set_index
 
       bytecode(g)
       finish(g)
