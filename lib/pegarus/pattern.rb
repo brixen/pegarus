@@ -31,10 +31,61 @@ module Pegarus
   module_function :pattern
 
   class Pattern
+    include Instructions
+
     def match(subject)
-      # every pattern is the root of a tree
-      # setup (and equiv of 'S / . S') then call #bytecode(g)
+      compile subject
     end
+
+    def compile(subject)
+      g = Generator.new
+
+      g.name = :match
+      g.file = :"(pegarus)"
+      g.set_line 1
+
+      g.required_args = 1
+      g.total_args = 1
+      g.splat_index = nil
+
+      g.local_count = 2
+      g.local_names = [:subject, :index]
+
+      g.set_index 0
+
+      bytecode(g)
+      finish(g)
+
+      g.encode Rubinius::InstructionSequence::Encoder
+      cm = g.package Rubinius::CompiledMethod
+      puts cm.decode if $DEBUG
+
+      ss = Rubinius::StaticScope.new Object
+      Rubinius.attach_method :match, cm, ss, self
+
+      match subject
+    end
+
+    def bytecode(g)
+      g.push :nil
+      g.goto g.fail
+    end
+
+    def finish(g)
+      # end
+      g.push_index
+      g.goto g.done
+
+      # fail
+      g.fail.set!
+      g.push :nil
+
+      g.done.set!
+      g.ret
+      g.close
+    end
+
+    # Pattern operators
 
     def /(other)
       Choice.new self, other
