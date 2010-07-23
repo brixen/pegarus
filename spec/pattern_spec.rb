@@ -112,7 +112,7 @@ describe "Pegarus#-" do
 end
 
 describe "Pegarus#*" do
-  it "returns a Difference of two patterns" do
+  it "returns a Product of two patterns" do
     p1 = Pegarus.pattern(1)
     p2 = Pegarus.pattern("a")
     pattern = p1 * p2
