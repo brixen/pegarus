@@ -86,6 +86,10 @@ module Pegarus
       g.close
     end
 
+    def graph
+      Rubinius::AST::AsciiGrapher.new(self, Pattern).print
+    end
+
     # Pattern operators
 
     def /(other)
