@@ -113,12 +113,11 @@ end
 
 describe "Pegarus#*" do
   it "returns a Product of two patterns" do
-    p1 = Pegarus.pattern(1)
-    p2 = Pegarus.pattern("a")
-    pattern = p1 * p2
+    p1 = Pegarus.pattern("a")
+    pattern = p1 * 2
 
     pattern.should be_an_instance_of(Pegarus::Product)
     pattern.first.should equal(p1)
-    pattern.second.should equal(p2)
+    pattern.second.should == 2
   end
 end
