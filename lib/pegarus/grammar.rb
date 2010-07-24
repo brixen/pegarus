@@ -47,10 +47,10 @@ module Pegarus
       name = sym.to_s
 
       if name[-1] == ?=
-        return set_variable(name[0..-2], *args)
+        set_variable name[0..-2], *args
+      else
+        get_variable name
       end
-
-      super
     end
   end
 end

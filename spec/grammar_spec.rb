@@ -43,3 +43,12 @@ describe "Pegarus.grammar" do
     grammar.token.pattern.should equal(variable.pattern)
   end
 end
+
+describe "Pegarus::Grammar" do
+  it "returns a Variable instance with the name of the method invoked" do
+    grammar = Pegarus.grammar
+    variable = grammar.pattern
+    variable.name.should == :pattern
+    variable.pattern.should be_nil
+  end
+end
