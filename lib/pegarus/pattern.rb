@@ -57,7 +57,7 @@ module Pegarus
       bytecode(g)
       finish(g)
 
-      g.encode Rubinius::InstructionSequence::Encoder
+      g.encode
       cm = g.package Rubinius::CompiledMethod
       puts cm.decode if $DEBUG
 
