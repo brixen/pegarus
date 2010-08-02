@@ -1,1 +1,6 @@
 Implementation of LPEG on Rubinius.
+
+1. Running the specs
+
+Install the mspec gem, ensure 'rbx' is on your path, the run 'rake' in the
+root of the Pegarus source.
