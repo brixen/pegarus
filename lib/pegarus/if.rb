@@ -6,7 +6,7 @@ module Pegarus
       g.push_index # store index, so that we can restart
       old_fail = g.fail
       done = g.new_label
-      
+
       pattern_fail = g.new_label
       g.fail = pattern_fail
       @pattern.bytecode(g)
@@ -19,7 +19,7 @@ module Pegarus
       g.set_index # reset index to the stored index, this pops the value
       g.fail = old_fail
       g.goto g.fail
-      
+
       done.set!
     end
   end
