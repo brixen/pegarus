@@ -18,7 +18,7 @@ describe "Choice#match" do
     pat = Pegarus.pattern("aaa") / Pegarus.pattern("a")
     pat.match("aaa").should == 3
   end
-  
+
   it "matches the second pattern if the first does not match" do
     pat = Pegarus.pattern("a") / Pegarus.pattern("bc")
     pat.match("bc").should == 2
