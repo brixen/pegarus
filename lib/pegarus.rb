@@ -1,6 +1,4 @@
 require 'pegarus/pegarus'
-require 'pegarus/generator'
-require 'pegarus/instructions'
 require 'pegarus/pattern'
 require 'pegarus/always'
 require 'pegarus/any'

@@ -4,10 +4,9 @@ require 'pegarus'
 
 case ENV["PEGARUS_MACHINE"]
 when "ruby"
+  require 'pegarus/parsing_machine'
+  Pegarus::Pattern.machine Pegarus::ParsingMachine
 when "rbx"
-  module Pegarus
-    class Pattern
-      include Instructions
-    end
-  end
+  require 'pegarus/rubinius_jit'
+  Pegarus::Pattern.machine Pegarus::RubiniusJIT
 end
