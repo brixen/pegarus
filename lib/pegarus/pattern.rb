@@ -36,7 +36,11 @@ module Pegarus
     end
 
     def graph
-      Rubinius::AST::AsciiGrapher.new(self, Pattern).print
+      if defined? Rubinius
+        Rubinius::AST::AsciiGrapher.new(self, Pattern).print
+      else
+        inspect
+      end
     end
 
     # Pattern operators
