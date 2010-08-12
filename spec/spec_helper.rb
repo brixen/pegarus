@@ -3,10 +3,10 @@ $: << File.expand_path('../../lib', __FILE__)
 require 'pegarus'
 
 case ENV["PEGARUS_MACHINE"]
-when "ruby"
+when "vm"
   require 'pegarus/parsing_machine'
   Pegarus::Pattern.machine Pegarus::ParsingMachine
-when "rbx"
+when "xjit"
   require 'pegarus/rubinius_jit'
   Pegarus::Pattern.machine Pegarus::RubiniusJIT
 end
