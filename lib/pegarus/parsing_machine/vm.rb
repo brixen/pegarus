@@ -1,19 +1,7 @@
 module Pegarus
   module ParsingMachine
     class VM
-      attr_reader :pc, :index, :stack
-
-      def initialize(pattern)
-        @program = Compiler.new(pattern).compile
-      end
-
-      def reset
-        @pc = 0
-        @index = 0
-        @stack = []
-      end
-
-      def execute(subject)
+      def self.execute(program, subject)
         reset
 
         last = @program.size
