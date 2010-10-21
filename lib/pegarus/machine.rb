@@ -1,5 +1,5 @@
-require 'pegarus/parsing_machine/compiler'
-require 'pegarus/parsing_machine/vm'
+require 'pegarus/machine/compiler'
+require 'pegarus/machine/vm'
 
 module Pegarus
   module ParsingMachine

@@ -1,6 +1,6 @@
 module Pegarus
   class Generator < Rubinius::Generator
-    attr_reader :done 
+    attr_reader :done
     attr_accessor :fail
 
     def initialize

@@ -4,9 +4,9 @@ require 'pegarus'
 
 case ENV["PEGARUS_MACHINE"]
 when "vm"
-  require 'pegarus/parsing_machine'
+  require 'pegarus/machine'
   Pegarus::Pattern.machine Pegarus::ParsingMachine
 when "xjit"
-  require 'pegarus/rubinius_jit'
+  require 'pegarus/rubinius'
   Pegarus::Pattern.machine Pegarus::RubiniusJIT
 end

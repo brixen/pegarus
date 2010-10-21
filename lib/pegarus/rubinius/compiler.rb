@@ -1,5 +1,3 @@
-require 'pegarus/generator'
-
 module Pegarus
   module RubiniusJIT
     def match(subject)
@@ -181,3 +179,4 @@ module Pegarus
     end
   end
 end
+
