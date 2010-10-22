@@ -5,5 +5,9 @@ module Pegarus
     def initialize(range)
       @range = range
     end
+
+    def visit(visitor)
+      visitor.character_range self
+    end
   end
 end

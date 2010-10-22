@@ -43,6 +43,9 @@ module Pegarus
       end
     end
 
+    def visit(visitor)
+    end
+
     # Pattern operators
 
     def /(other)

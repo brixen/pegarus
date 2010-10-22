@@ -5,5 +5,9 @@ module Pegarus
     def initialize(characters)
       @characters = characters
     end
+
+    def visit(visitor)
+      visitor.set self
+    end
   end
 end

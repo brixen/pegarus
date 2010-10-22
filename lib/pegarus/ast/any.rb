@@ -5,5 +5,9 @@ module Pegarus
     def initialize(count)
       @count = count
     end
+
+    def visit(visitor)
+      visitor.any self
+    end
   end
 end
