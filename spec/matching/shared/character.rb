@@ -1,6 +1,4 @@
-require 'spec/spec_helper'
-
-describe "Character#match" do
+describe :ast_character, :shared => true do
   it "returns nil when the subject is empty" do
     Pegarus.pattern("a").match("").should be_nil
   end

@@ -1,13 +1,4 @@
-require 'spec/spec_helper'
-
-describe "Unless.new" do
-  it "converts the input to a pattern" do
-    pattern = Pegarus::Unless.new "a"
-    pattern.pattern.should be_an_instance_of(Pegarus::Character)
-  end
-end
-
-describe "Unless#match" do
+describe :ast_unless, :shared => true do
   it "returns nil if the first pattern does not match" do
     pat = Pegarus.pattern(1) + -Pegarus.pattern("a")
     pat.match("").should be_nil
@@ -23,4 +14,3 @@ describe "Unless#match" do
     pat.match("aacbde").should == 1
   end
 end
-

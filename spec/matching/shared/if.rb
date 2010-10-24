@@ -1,13 +1,4 @@
-require 'spec/spec_helper'
-
-describe "If.new" do
-  it "converts the input to a pattern" do
-    pattern = Pegarus::If.new "a"
-    pattern.pattern.should be_an_instance_of(Pegarus::Character)
-  end
-end
-
-describe "If#match" do
+describe :ast_if, :shared => true do
   it "returns nil if the first pattern does not match" do
     pat = Pegarus.pattern(1) + +Pegarus.pattern("a")
     pat.match("").should be_nil

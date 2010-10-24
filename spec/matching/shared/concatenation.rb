@@ -1,14 +1,4 @@
-require 'spec/spec_helper'
-
-describe "Concatenation.new" do
-  it "converts both inputs to patterns" do
-    pattern = Pegarus::Concatenation.new 1, "a"
-    pattern.first.should be_an_instance_of(Pegarus::Any)
-    pattern.second.should be_an_instance_of(Pegarus::Character)
-  end
-end
-
-describe "Concatenation#match" do
+describe :ast_concatenation, :shared => true do
   it "returns nil if the first pattern does not match" do
     pat = Pegarus.pattern(1) + Pegarus.pattern("a")
     pat.match("").should be_nil

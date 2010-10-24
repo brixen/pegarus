@@ -1,6 +1,4 @@
-require 'spec/spec_helper'
-
-describe "Any#match" do
+describe :ast_any, :shared => true do
   it "returns nil when the subject is empty" do
     Pegarus.pattern(1).match("").should be_nil
   end
