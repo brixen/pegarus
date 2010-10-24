@@ -1,8 +1,20 @@
 module Pegarus
-  class Interpreter
-    def evaluate(ast)
-      visitor = new
-      ast.visit visitor
+  class Evaluator
+    def self.new_executor(pattern, subject)
+      pattern.instance_variable_set :@evaluator, new
+
+      class << pattern
+        class_eval <<-eval
+          def match(subject)
+            @evaluator.match self, subject
+          end
+        eval
+      end
+
+      pattern.match subject
+    end
+
+    def match(pattern, subject)
     end
 
     def always(pattern)
@@ -45,3 +57,5 @@ module Pegarus
     end
   end
 end
+
+Pegarus::Pattern.select_engine Pegarus::Evaluator

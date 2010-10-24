@@ -1,4 +1,6 @@
 module Pegarus
+  # Accepts a Ruby object representation of simple PEG "atoms" and returns an
+  # AST node.
   def pattern(spec)
     case spec
     when Array
@@ -30,9 +32,42 @@ module Pegarus
   end
   module_function :pattern
 
+
+  # Class Pattern is the base class for all nodes used to represent the AST
+  # for a PEG. Following LPEG, the base is a pattern and not a grammar.
   class Pattern
-    def self.machine(klass)
-      include klass
+    # Executes the PEG pattern on subject. If the pattern matches a prefix of
+    # subject, returns the index one character past the last matching
+    # character. Otherwise, returns nil.
+    #
+    # The pattern AST is purely a representation. By default, it includes no
+    # machinery to execute the pattern over the subject. All execution is
+    # provided by other facilities, for example, the AST evaluator and the
+    # parsing machine compiler and interpreter. These facilities are called
+    # "engines".
+    #
+    # The Pattern class defaults to the AST Evaluator engine. The protocol
+    # requires the engine class to respond to .new_exector taking the AST root
+    # node and the subject as arguments. The default Pattern#match method is
+    # essentially a trampoline. It calls new_executor and expects that method
+    # to replace #match on the root node and then tail call to the new #match
+    # method installed by the engine.
+
+    def match(subject)
+      self.class.engine.new_executor self, subject
+    end
+
+    def self.engine
+      unless @engine
+        require 'pegarus/evaluator'
+        @engine = Evaluator
+      end
+
+      @engine
+    end
+
+    def self.select_engine(klass)
+      @engine = klass
     end
 
     def graph

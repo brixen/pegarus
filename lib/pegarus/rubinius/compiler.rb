@@ -1,56 +1,42 @@
 module Pegarus
-  module RubiniusJIT
-    def match(subject)
-      compile subject
+  module Rubinius
+    def self.new_exector(pattern, subject)
+      Compiler.new.compile pattern
+      pattern.match subject
     end
 
-    def compile(subject)
-      g = Generator.new
+    class Compiler
+      attr_reader :g
 
-      g.name = :match
-      g.file = :"(pegarus)"
-      g.set_line 1
+      def initialize
+        @g = Generator.new
+      end
 
-      g.required_args = 1
-      g.total_args = 1
-      g.splat_index = nil
+      def compile(pattern)
+        g.name = :match
+        g.file = :"(pegarus)"
+        g.set_line 1
 
-      g.local_count = 2
-      g.local_names = [:subject, :index]
+        g.required_args = 1
+        g.total_args = 1
+        g.splat_index = nil
 
-      g.push 0
-      g.set_index
+        g.local_count = 2
+        g.local_names = [:subject, :index]
 
-      bytecode(g)
-      finish(g)
+        g.push 0
+        g.set_index
 
-      g.encode
-      cm = g.package Rubinius::CompiledMethod
-      puts cm.decode if $DEBUG
+        pattern.visit self
+        g.finish
 
-      ss = Rubinius::StaticScope.new Object
-      Rubinius.attach_method :match, cm, ss, self
+        g.encode
+        cm = g.package Rubinius::CompiledMethod
+        puts cm.decode if $DEBUG
 
-      match subject
-    end
-
-    def bytecode(g)
-      g.push :nil
-      g.goto g.fail
-    end
-
-    def finish(g)
-      # end
-      g.push_index
-      g.goto g.done
-
-      # fail
-      g.fail.set!
-      g.push :nil
-
-      g.done.set!
-      g.ret
-      g.close
+        ss = Rubinius::StaticScope.new Object
+        Rubinius.attach_method :match, cm, ss, pattern
+      end
     end
 
     def any(g, count)
@@ -179,4 +165,3 @@ module Pegarus
     end
   end
 end
-
