@@ -15,12 +15,32 @@ module Pegarus
     end
 
     def match(pattern, subject)
+      @subject  = subject
+      @failure  = false
+      @index    = 0
+
+      pattern.visit self
+
+      failure? ? nil : @index
+    end
+
+    def failure
+      @failure = true
+    end
+
+    def failure?
+      @failure
     end
 
     def always(pattern)
     end
 
     def any(pattern)
+      if @subject.size > @index + pattern.count
+        @index += pattern.count
+      else
+        failure
+      end
     end
 
     def any_range(pattern)
