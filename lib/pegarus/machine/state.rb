@@ -2,26 +2,27 @@ module Pegarus
   module Machine
     class State
       attr_accessor :ip, :index
-      attr_reader :subject, :stack
+      attr_reader :subject, :stack, :captures
 
       def initialize(subject)
         @subject  = subject
         @ip       = 0
         @index    = 0
         @stack    = []
-        @fail     = false
+        @captures = []
+        @failure  = false
       end
 
-      def fail?
-        @fail
+      def failure?
+        @failure
       end
 
-      def fail
-        @fail = true
+      def failure
+        @failure = true
       end
 
       def continue
-        @fail = false
+        @failure = false
       end
     end
   end
