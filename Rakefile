@@ -3,32 +3,26 @@ task :default => :spec
 BASE_DIR = File.expand_path('../', __FILE__)
 RUBY = ENV["RUBY"] || "rbx"
 
-def spec(r, m)
-  ENV["PEGARUS_MACHINE"] = m
-  sh("mspec -t #{r} -T -I#{BASE_DIR} spec") { |ok, res|  }
+def spec(target)
+  sh("mspec -t #{target} -T -I#{BASE_DIR} spec") { |ok, res|  }
 end
 
-desc "Run the specs (default)"
+desc "Run the specs with $RUBY or 'rbx' (default)"
 task :spec do
-  spec RUBY, "vm"
+  spec RUBY
 end
 
 namespace :spec do
-  desc "Run the Pegarus specs with Rubinius and VM"
-  task "rbx:vm" do
-    spec "rbx", "vm"
+  desc "Run the specs with Rubinius"
+  task :rbx do
+    spec "rbx"
   end
 
-  desc "Run the Pegarus specs with Rubinius and JIT"
-  task "rbx:jit" do
-    spec "rbx", "xjit"
-  end
-
-  desc "Run the specs with MRI"
+  desc "Run the specs with the 'ruby' on $PATH"
   task :ruby do
-    spec "ruby", "vm"
+    spec "ruby"
   end
 
   desc "Run the specs with all engines"
-  task :all => ["rbx:jit", "rbx:vm", :ruby]
+  task :all => [:rbx, :ruby]
 end
