@@ -39,7 +39,9 @@ module Pegarus
       end
 
       instruction :commit do |state, label|
-        state.stack[-3..-1] = nil
+        state.stack.pop
+        state.stack.pop
+        state.stack.pop
         state.ip = label
       end
 

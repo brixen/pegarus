@@ -25,9 +25,9 @@ module Pegarus
       end
     end
 
-    def set_variable(name, *pattern)
+    def set_variable(name, pattern)
       variable = get_variable name
-      variable.pattern = *pattern
+      variable.pattern = pattern
       variable
     end
 
@@ -46,8 +46,8 @@ module Pegarus
     def method_missing(sym, *args)
       name = sym.to_s
 
-      if name[-1] == ?=
-        set_variable name[0..-2], *args
+      if name[-1] == ?= and args.size == 1
+        set_variable name[0..-2], args.first
       else
         get_variable name
       end
