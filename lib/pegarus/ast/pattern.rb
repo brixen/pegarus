@@ -54,7 +54,7 @@ module Pegarus
     # method installed by the engine.
 
     def match(subject)
-      self.class.engine.new_executor self, subject
+      Pattern.engine.new_executor self, subject
     end
 
     def self.engine
