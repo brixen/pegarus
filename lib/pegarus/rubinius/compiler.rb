@@ -1,6 +1,6 @@
 module Pegarus
   module Rubinius
-    def self.new_exector(pattern, subject)
+    def self.new_executor(pattern, subject)
       Compiler.new.compile pattern
       pattern.match subject
     end
@@ -31,11 +31,64 @@ module Pegarus
         g.finish
 
         g.encode
-        cm = g.package Rubinius::CompiledMethod
+        cm = g.package ::Rubinius::CompiledMethod
         puts cm.decode if $DEBUG
 
-        ss = Rubinius::StaticScope.new Object
-        Rubinius.attach_method :match, cm, ss, pattern
+        ss = ::Rubinius::StaticScope.new Object
+        ::Rubinius.attach_method :match, cm, ss, pattern
+      end
+
+      def failure
+        g.push :nil
+        g.goto g.fail
+      end
+
+      def always(pattern)
+        failure
+      end
+
+      def any(pattern)
+        failure
+      end
+
+      def any_range(pattern)
+        failure
+      end
+
+      def character(pattern)
+        failure
+      end
+
+      def character_range(pattern)
+        failure
+      end
+
+      def choice(pattern)
+        failure
+      end
+
+      def concatenation(pattern)
+        failure
+      end
+
+      def difference(pattern)
+        failure
+      end
+
+      def if(pattern)
+        failure
+      end
+
+      def never(pattern)
+        failure
+      end
+
+      def set(pattern)
+        failure
+      end
+
+      def unless(pattern)
+        failure
       end
     end
 

@@ -33,7 +33,7 @@ module Pegarus
       def finish
         # end
         push_index
-        goto g.done
+        goto done
 
         # fail
         fail.set!
