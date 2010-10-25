@@ -1,0 +1,3 @@
+fails:Character#match returns nil when the subject is empty
+fails:Character#match returns nil when the subject does not match completely
+fails:Character#match returns the index of the character following the matched substring

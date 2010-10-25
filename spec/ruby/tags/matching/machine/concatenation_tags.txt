@@ -1,0 +1,3 @@
+fails:Concatenation#match returns nil if the first pattern does not match
+fails:Concatenation#match returns nil if the second pattern does not match
+fails:Concatenation#match returns the index of the character following the matched substring

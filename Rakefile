@@ -6,7 +6,7 @@ BASE_DIR = File.expand_path('../', __FILE__)
 RUBY = ENV["RUBY"] || "rbx"
 
 def spec(target)
-  sh("mspec -t #{target} -T -I#{BASE_DIR} spec") { |ok, res|  }
+  sh("mspec ci -t #{target} -T -I#{BASE_DIR} spec") { |ok, res|  }
 end
 
 desc "Run the specs with $RUBY or 'rbx' (default)"

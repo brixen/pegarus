@@ -1,0 +1,2 @@
+fails:Character#match returns the index of the character following the matched substring
+fails:Character#match returns 0 when pattern is empty
