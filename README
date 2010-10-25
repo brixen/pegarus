@@ -1,6 +1,24 @@
-Implementation of LPEG on Rubinius.
+Pegarus is, broadly, an implementation of LPEG on Rubinius. LPEG implements a
+Parsing Expression Grammar using a parsing machine rather than the Packrat
+algorithm. (See "A Text Pattern-Matching Tool based on Parsing Expression
+Grammars" by Roberto Ierusalimschy.)
+
+Pegarus actually implements an abstract syntax tree (AST) for the PEG. There
+are various options to execute the AST against a subject string. One option is
+a simple AST-walking evaluator. A second option is an implementation of the
+LPEG parsing machine. A third option is a compiler that targets Rubinius
+bytecode.
+
 
 1. Running the specs
 
-Install the mspec gem, ensure 'rbx' is on your path, the run 'rake' in the
-root of the Pegarus source.
+Pegarus uses the mspec gem because of the facilities for tags and easily
+defining custom matchers and guards, since Pegarus targets more than one Ruby
+implementation.
+
+To run the specs, use the following steps:
+
+1. Install the mspec gem
+2. If you plan to use Rubinius, ensure 'rbx' is on your path
+3. Run 'rake' to run the specs with $RUBY or 'rbx'
+4. Set the environment variable RUBY to the name of the Ruby to use
