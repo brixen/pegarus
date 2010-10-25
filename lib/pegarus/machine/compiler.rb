@@ -1,12 +1,17 @@
 module Pegarus
-  module ParsingMachine
+  module Machine
     class Compiler
-      def initialize(pattern)
-        @pattern = pattern
-      end
+      def compile(pattern)
+        program = []
+        pattern.instance_variable_set :@program, program
 
-      def compile
-        []
+        class << pattern
+          class_eval <<-eval
+            def match(subject)
+              Pegarus::Machine.execute @program, subject
+            end
+          eval
+        end
       end
     end
   end

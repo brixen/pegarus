@@ -25,7 +25,7 @@ module Pegarus
         end
       end
 
-      return state.fail? ? nil : state.index
+      return state.failure? ? nil : state.index
     end
   end
 end
