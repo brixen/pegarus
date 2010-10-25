@@ -33,6 +33,7 @@ module Pegarus
     end
 
     def always(pattern)
+      failure
     end
 
     def any(pattern)
@@ -44,36 +45,47 @@ module Pegarus
     end
 
     def any_range(pattern)
+      failure
     end
 
     def character(pattern)
+      failure
     end
 
     def character_range(pattern)
+      failure
     end
 
     def choice(pattern)
+      failure
     end
 
     def concatenation(pattern)
+      failure
     end
 
     def difference(pattern)
+      failure
     end
 
     def if(pattern)
+      failure
     end
 
     def never(pattern)
+      failure
     end
 
     def product(pattern)
+      failure
     end
 
     def set(pattern)
+      failure
     end
 
     def unless(pattern)
+      failure
     end
   end
 end
