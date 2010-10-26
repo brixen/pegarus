@@ -8,14 +8,14 @@ describe "The fail instruction" do
   end
 
   it "does not clear the failure if the stack is empty" do
-    @state.failure
+    @state.failure?.should be_false
     @state.stack.should be_empty
     @insn[@state]
     @state.failure?.should be_true
   end
 
   it "does not clear the failure state if the stack only contains return address labels" do
-    @state.failure
+    @state.failure?.should be_false
     @state.stack << 1 << 2 << 3
     @insn[@state]
     @state.stack.should be_empty
@@ -23,7 +23,7 @@ describe "The fail instruction" do
   end
 
   it "clears the failure state and assigns the IP, subject index, and captures list to the values on the stack" do
-    @state.failure
+    @state.failure?.should be_false
     @state.stack << 1 << 2 << 3 << [] << 4
     @insn[@state]
     @state.stack.should == [1]

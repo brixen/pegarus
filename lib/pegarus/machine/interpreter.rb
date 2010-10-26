@@ -6,7 +6,7 @@ module Pegarus
 
       total = program.size
       while state.ip < total
-        break if state.fail?
+        break if state.failure?
 
         width, code = Instructions[program[state.ip]]
         case width
@@ -18,7 +18,7 @@ module Pegarus
           code[state, program[state.ip+1], program[state.ip+2]]
         end
 
-        if state.fail?
+        if state.failure?
           fail[state]
         else
           state.ip += width

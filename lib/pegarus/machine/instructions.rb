@@ -50,6 +50,8 @@ module Pegarus
       end
 
       instruction :fail do |state|
+        state.failure
+
         until state.stack.empty?
           item = state.stack.pop
           next unless item.kind_of? Array
