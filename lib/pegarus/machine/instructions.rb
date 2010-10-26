@@ -64,6 +64,16 @@ module Pegarus
           break
         end
       end
+
+      # Extended instructions
+
+      instruction :any do |state, count|
+        if state.size >= state.index + count
+          state.index += count
+        else
+          state.failure
+        end
+      end
     end
   end
 end

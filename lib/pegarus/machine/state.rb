@@ -2,10 +2,11 @@ module Pegarus
   module Machine
     class State
       attr_accessor :ip, :index
-      attr_reader :subject, :stack, :captures
+      attr_reader :subject, :size, :stack, :captures
 
       def initialize(subject)
         @subject  = subject
+        @size     = subject.size
         @ip       = 0
         @index    = 0
         @stack    = []
