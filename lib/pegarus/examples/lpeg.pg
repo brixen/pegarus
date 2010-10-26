@@ -1,0 +1,12 @@
+pattern     = grammar / snippet
+grammar     = (nonterminal '=' sp snippet)+
+snippet     = alternative ('/' sp alternative)*
+alternative = ([!&]? sp suffix)+
+suffix      = primary ([*+?] sp)*
+primary     = '(' sp pattern ')' sp / '.' sp / literal /
+              char_class / nonterminal !'='
+literal     = ['] (!['] .)* ['] sp
+char_class  = '[' (!']' (. '-' . / .))* ']' sp
+nonterminal = [_a-zA-Z]+ sp
+sp          = [ \t\n]*
+
