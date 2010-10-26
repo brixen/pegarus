@@ -9,20 +9,20 @@ describe "The char instruction" do
 
   it "advances the subject index if the character matches" do
     @state.index.should == 0
-    @insn[@state, ?a]
+    @insn[@state, 97]
     @state.index.should == 1
   end
 
   it "does not advance the subject index if the charater does not match" do
     @state.index.should == 0
-    @insn[@state, ?b]
+    @insn[@state, 98]
     @state.index.should == 0
   end
 
   it "sets the machine state to failure if current index exceeds subject length" do
     state = Pegarus::Machine::State.new ""
     state.failure?.should be_false
-    @insn[state, ?a]
+    @insn[state, 97]
     state.failure?.should be_true
   end
 

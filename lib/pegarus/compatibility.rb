@@ -1,3 +1,11 @@
+class String
+  unless method_defined? :getbyte
+    def getbyte(index)
+      self[index]
+    end
+  end
+end
+
 class Module
   unless method_defined? :thunk_method
     def thunk_method(name, value)

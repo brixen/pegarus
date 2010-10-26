@@ -14,7 +14,7 @@ module Pegarus
       end
 
       instruction :char do |state, char|
-        if state.subject[state.index] == char
+        if state.subject.getbyte(state.index) == char
           state.index += 1
         else
           state.failure
