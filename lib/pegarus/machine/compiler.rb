@@ -25,7 +25,7 @@ module Pegarus
       end
 
       def any(pattern)
-        g.fail
+        g.any pattern.count
       end
 
       def any_range(pattern)
@@ -45,7 +45,8 @@ module Pegarus
       end
 
       def concatenation(pattern)
-        g.fail
+        pattern.first.visit self
+        pattern.second.visit self
       end
 
       def difference(pattern)

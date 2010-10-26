@@ -76,6 +76,7 @@ module Pegarus
       else
         inspect
       end
+      nil
     end
 
     def visit(visitor)

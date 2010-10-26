@@ -7,6 +7,10 @@ module Pegarus
         @program = []
       end
 
+      def new_label
+        Label.new self
+      end
+
       def method_missing(sym, *args)
         @program << sym
         @program.concat args

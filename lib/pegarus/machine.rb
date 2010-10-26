@@ -1,5 +1,6 @@
 require 'pegarus/machine/instructions'
 require 'pegarus/machine/generator'
+require 'pegarus/machine/label'
 require 'pegarus/machine/compiler'
 require 'pegarus/machine/state'
 require 'pegarus/machine/interpreter'
