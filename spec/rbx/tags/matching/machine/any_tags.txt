@@ -1,3 +1,1 @@
-fails:Any#match returns nil when the subject is empty
-fails:Any#match returns nil if there are not N characters to match in the subject
 fails:Any#match returns the index of the character following the matched substring

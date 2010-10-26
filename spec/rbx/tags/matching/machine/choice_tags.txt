@@ -1,3 +1,2 @@
-fails:Choice#match returns nil if none of the patterns match
 fails:Choice#match matches the first pattern if both match
 fails:Choice#match matches the second pattern if the first does not match
