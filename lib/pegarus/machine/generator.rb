@@ -11,9 +11,27 @@ module Pegarus
         Label.new self
       end
 
-      def method_missing(sym, *args)
-        @program << sym
+      def ip
+        @program.size
+      end
+
+      def choice(label)
+        add :choice, label
+        label.used_at ip - 1
+      end
+
+      def back_commit(label)
+        add :back_commit, label
+        label.used_at ip - 1
+      end
+
+      def add(name, *args)
+        @program << name
         @program.concat args
+      end
+
+      def method_missing(sym, *args)
+        add sym, *args
       end
     end
   end

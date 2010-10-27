@@ -54,7 +54,17 @@ module Pegarus
       end
 
       def if(pattern)
+        fail = g.new_label
+        pass = g.new_label
+
+        g.choice fail
+        pattern.pattern.visit self
+        g.back_commit pass
+
+        fail.set!
         g.fail
+
+        pass.set!
       end
 
       def never(pattern)
@@ -70,7 +80,11 @@ module Pegarus
       end
 
       def unless(pattern)
-        g.fail
+        lbl = g.new_label
+        g.choice lbl
+        pattern.pattern.visit self
+        g.fail_twice
+        lbl.set!
       end
     end
   end
