@@ -16,12 +16,19 @@ module Pegarus
       end
 
       def choice(label)
-        add :choice, label
-        label.used_at ip - 1
+        add_with_label :choice, label
+      end
+
+      def commit(label)
+        add_with_label :commit, label
       end
 
       def back_commit(label)
-        add :back_commit, label
+        add_with_label :back_commit, label
+      end
+
+      def add_with_label(name, label)
+        add name, label
         label.used_at ip - 1
       end
 

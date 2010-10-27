@@ -41,7 +41,17 @@ module Pegarus
       end
 
       def choice(pattern)
-        g.fail
+        fail = g.new_label
+        pass = g.new_label
+
+        g.choice fail
+        pattern.first.visit self
+        g.commit pass
+
+        fail.set!
+        pattern.second.visit self
+
+        pass.set!
       end
 
       def concatenation(pattern)
