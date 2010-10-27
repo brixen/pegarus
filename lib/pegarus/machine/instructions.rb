@@ -46,7 +46,7 @@ module Pegarus
       end
 
       instruction :capture do |state, data|
-        state.captures << [state.index, data]
+        state.captures << state.index << data
       end
 
       instruction :fail do |state|
@@ -72,6 +72,30 @@ module Pegarus
           state.index += count
         else
           state.failure
+        end
+      end
+
+      instruction :fail_twice do |state|
+        state.stack.pop
+        state.stack.pop
+        state.stack.pop
+        state.failure
+      end
+
+      instruction :back_commit do |state, label|
+        state.failure
+
+        until state.stack.empty?
+          item = state.stack.pop
+          next unless item.kind_of? Array
+
+          state.captures.replace item
+          state.index = state.stack.pop
+          state.stack.pop
+          state.ip = label
+
+          state.continue
+          break
         end
       end
     end

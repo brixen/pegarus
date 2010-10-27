@@ -10,6 +10,6 @@ describe "The capture instruction" do
   it "adds an entry [current index, <data>] in the captures list" do
     @state.captures.should == []
     @insn[@state, :data]
-    @state.captures.should == [[0, :data]]
+    @state.captures.should == [0, :data]
   end
 end
