@@ -104,6 +104,12 @@ module Pegarus
         state.stack[-2] = state.index
         state.ip = label
       end
+
+      instruction :span do |state, set|
+        while (char = state.subject[state.index]) and set.index(char)
+          state.index += 1
+        end
+      end
     end
   end
 end
