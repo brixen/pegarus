@@ -98,6 +98,12 @@ module Pegarus
           break
         end
       end
+
+      instruction :partial_commit do |state, label|
+        state.stack[-1] = state.captures
+        state.stack[-2] = state.index
+        state.ip = label
+      end
     end
   end
 end
