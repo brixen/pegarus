@@ -82,7 +82,18 @@ module Pegarus
       end
 
       def product(pattern)
-        g.fail
+        pattern.count.times do
+          pattern.pattern.visit self
+        end
+
+        top = g.new_label
+        cont = g.new_label
+
+        g.choice cont
+        top.set!
+        pattern.pattern.visit self
+        g.partial_commit top
+        cont.set!
       end
 
       def set(pattern)

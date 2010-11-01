@@ -27,6 +27,10 @@ module Pegarus
         add_with_label :back_commit, label
       end
 
+      def partial_commit(label)
+        add_with_label :partial_commit, label
+      end
+
       def add_with_label(name, label)
         add name, label
         label.used_at ip - 1
