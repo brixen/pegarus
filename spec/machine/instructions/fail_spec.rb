@@ -28,7 +28,7 @@ describe "The fail instruction" do
     @insn[@state]
     @state.stack.should == [1]
     @state.failure?.should be_false
-    @state.ip.should == 2
+    @state.next_ip.should == 2
     @state.index.should == 3
   end
 end

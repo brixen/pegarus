@@ -18,7 +18,7 @@ describe "The back_commit instruction" do
     @state.ip.should == 0
     @state.stack << 1 << 2 << 3 << []
     @insn[@state, 5]
-    @state.ip.should == 5
+    @state.next_ip.should == 5
   end
 
   it "backtracks to a choice entry on the stack" do

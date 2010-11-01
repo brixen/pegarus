@@ -16,6 +16,6 @@ describe "The commit instruction" do
   it "sets the machine IP to the value of the argument" do
     @state.stack << [] << 1 << 2
     @insn[@state, 5]
-    @state.ip.should == 5
+    @state.next_ip.should == 5
   end
 end

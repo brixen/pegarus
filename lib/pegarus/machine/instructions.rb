@@ -22,7 +22,7 @@ module Pegarus
       end
 
       instruction :jump do |state, label|
-        state.ip = label
+        state.next_ip = label
       end
 
       instruction :choice do |state, label|
@@ -31,18 +31,18 @@ module Pegarus
 
       instruction :call do |state, label|
         state.stack << state.ip + 2
-        state.ip = label
+        state.next_ip = label
       end
 
       instruction :return do |state|
-        state.ip = state.stack.pop
+        state.next_ip = state.stack.pop
       end
 
       instruction :commit do |state, label|
         state.stack.pop
         state.stack.pop
         state.stack.pop
-        state.ip = label
+        state.next_ip = label
       end
 
       instruction :capture do |state, data|
@@ -58,7 +58,7 @@ module Pegarus
 
           state.captures.replace item
           state.index = state.stack.pop
-          state.ip = state.stack.pop
+          state.next_ip = state.stack.pop
 
           state.continue
           break
@@ -92,7 +92,7 @@ module Pegarus
           state.captures.replace item
           state.index = state.stack.pop
           state.stack.pop
-          state.ip = label
+          state.next_ip = label
 
           state.continue
           break
@@ -102,7 +102,7 @@ module Pegarus
       instruction :partial_commit do |state, label|
         state.stack[-1] = state.captures
         state.stack[-2] = state.index
-        state.ip = label
+        state.next_ip = label
       end
 
       instruction :span do |state, set|
