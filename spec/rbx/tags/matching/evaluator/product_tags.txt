@@ -1,0 +1,3 @@
+fails:Product#match returns the previous index when matching zero or more and there is no match
+fails:Product#match returns the index of the character following the matched substring
+fails:Product#match matches with a complex pattern
