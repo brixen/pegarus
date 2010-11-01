@@ -117,7 +117,7 @@ describe "Pegarus#*" do
     pattern = p1 * 2
 
     pattern.should be_an_instance_of(Pegarus::Product)
-    pattern.first.should equal(p1)
-    pattern.second.should == 2
+    pattern.pattern.should equal(p1)
+    pattern.count.should == 2
   end
 end
