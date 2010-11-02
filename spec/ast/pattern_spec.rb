@@ -44,16 +44,16 @@ describe "Pegarus.pattern" do
     Pegarus.pattern(nil).should be_nil
   end
 
-  it "raises a Pegarus::ParseError when passed a Object" do
-    lambda { Pegarus.pattern(Object.new) }.should raise_error(Pegarus::ParseError)
+  it "raises a Pegarus::InvalidPatternError when passed a Object" do
+    lambda { Pegarus.pattern(Object.new) }.should raise_error(Pegarus::InvalidPatternError)
   end
 
-  it "raises a Pegarus::ParseError when passed a Hash" do
-    lambda { Pegarus.pattern({}) }.should raise_error(Pegarus::ParseError)
+  it "raises a Pegarus::InvalidPatternError when passed a Hash" do
+    lambda { Pegarus.pattern({}) }.should raise_error(Pegarus::InvalidPatternError)
   end
 
-  it "raises a Pegarus::ParseError when passed a Float" do
-    lambda { Pegarus.pattern(4.2) }.should raise_error(Pegarus::ParseError)
+  it "raises a Pegarus::InvalidPatternError when passed a Float" do
+    lambda { Pegarus.pattern(4.2) }.should raise_error(Pegarus::InvalidPatternError)
   end
 end
 

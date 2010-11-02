@@ -1,1 +1,1 @@
-require 'pegarus/parser/parse_error'
+require 'pegarus/parser/bootstrap'

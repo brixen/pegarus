@@ -27,7 +27,7 @@ module Pegarus
     when nil
       nil
     else
-      raise ParseError, "unknown specification type for Pattern: #{spec.inspect}"
+      raise InvalidPatternError, "unknown specification type for Pattern: #{spec.inspect}"
     end
   end
   module_function :pattern
