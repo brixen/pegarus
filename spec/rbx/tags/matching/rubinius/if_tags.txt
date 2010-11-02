@@ -1,2 +1,3 @@
 fails:If#match returns the index at the beginning of the pattern if the pattern matches
 fails:If#match returns the index at the beginning of the pattern if the compound pattern matches
+fails:If#match combines with a consuming pattern

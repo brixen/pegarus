@@ -23,4 +23,9 @@ describe :ast_if, :shared => true do
     pat = Pegarus.pattern(1) + +(Pegarus.pattern("b") + Pegarus.pattern("c"))
     pat.match("abcd").should == 1
   end
+
+  it "combines with a consuming pattern" do
+    pat = (+Pegarus.pattern("&") + Pegarus.pattern("&")) + Pegarus.pattern("p")
+    pat.match("&p").should == 2
+  end
 end
