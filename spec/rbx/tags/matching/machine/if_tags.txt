@@ -1,1 +1,0 @@
-fails:If#match returns the index of the character following the matched substring

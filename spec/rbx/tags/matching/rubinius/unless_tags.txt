@@ -1,4 +1,3 @@
-fails:Unless#match returns the index of the character following the matched substring
 fails:Unless#match returns 0 if the subject is empty
 fails:Unless#match returns the index at the beginning of the pattern if the pattern does not match
 fails:Unless#match returns the index at the beginning of the pattern if the compound pattern does not match
