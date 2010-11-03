@@ -1,7 +1,10 @@
 class String
-  unless method_defined? :getbyte
-    def getbyte(index)
-      self[index]
+  unless method_defined? :each_char
+    def each_char(&block)
+      return scan(/./u, &block) if $KCODE =~ /^u/i
+      split(//).each(&block)
+
+      self
     end
   end
 end

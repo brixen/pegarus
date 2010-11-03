@@ -33,7 +33,7 @@ module Pegarus
       end
 
       def character(pattern)
-        pattern.string.each_byte { |b| g.char b }
+        pattern.string.each_char { |b| g.char b }
       end
 
       def character_range(pattern)
