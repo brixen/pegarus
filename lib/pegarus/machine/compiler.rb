@@ -97,7 +97,7 @@ module Pegarus
       end
 
       def set(pattern)
-        g.fail
+        g.charset pattern.set
       end
 
       def unless(pattern)

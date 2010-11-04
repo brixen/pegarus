@@ -111,6 +111,16 @@ module Pegarus
           state.index += 1
         end
       end
+
+      instruction :charset do |state, set|
+        if state.index < state.size and
+           (char = state.subject[state.index, 1]) and
+           set.any? { |s| s.include? char }
+          state.index += 1
+        else
+          state.failure
+        end
+      end
     end
   end
 end

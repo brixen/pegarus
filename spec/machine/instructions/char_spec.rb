@@ -20,10 +20,10 @@ describe "The char instruction" do
   end
 
   it "sets the machine state to failure if current index exceeds subject length" do
-    state = Pegarus::Machine::State.new ""
-    state.failure?.should be_false
-    @insn[state, "a"]
-    state.failure?.should be_true
+    @state.failure?.should be_false
+    @state.index = 3
+    @insn[@state, "a"]
+    @state.failure?.should be_true
   end
 
   it "sets the machine state to failure if the character does not match" do

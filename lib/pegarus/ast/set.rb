@@ -1,9 +1,9 @@
 module Pegarus
   class Set < Pattern
-    attr_accessor :characters
+    attr_accessor :set
 
-    def initialize(characters)
-      @characters = characters
+    def initialize(set)
+      @set = set.uniq
     end
 
     def visit(visitor)

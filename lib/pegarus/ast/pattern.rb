@@ -4,7 +4,7 @@ module Pegarus
   def pattern(spec)
     case spec
     when Array
-      Set.new spec.join
+      Set.new spec
     when Integer
       Any.new spec
     when String
