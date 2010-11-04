@@ -5,18 +5,8 @@ describe "Pegarus.pattern" do
     Pegarus.pattern(5).should be_an_instance_of(Pegarus::Any)
   end
 
-  it "returns a AnyRange pattern when passed a Range of Integers" do
-    Pegarus.pattern(1..2).should be_an_instance_of(Pegarus::AnyRange)
-    Pegarus.pattern(1...2).should be_an_instance_of(Pegarus::AnyRange)
-  end
-
   it "returns an Character pattern when passed a String" do
     Pegarus.pattern("abc").should be_an_instance_of(Pegarus::Character)
-  end
-
-  it "returns a CharacterRange pattern when passed a Range of Strings" do
-    Pegarus.pattern("a".."z").should be_an_instance_of(Pegarus::CharacterRange)
-    Pegarus.pattern("a"..."z").should be_an_instance_of(Pegarus::CharacterRange)
   end
 
   it "returns a Set pattern when passed an Array" do

@@ -9,13 +9,6 @@ module Pegarus
       Any.new spec
     when String
       Character.new spec
-    when Range
-      case spec.first
-      when Integer
-        AnyRange.new spec
-      when String
-        CharacterRange.new spec
-      end
     when Symbol
       variable spec
     when Pattern

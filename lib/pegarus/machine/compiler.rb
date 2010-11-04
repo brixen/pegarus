@@ -28,16 +28,8 @@ module Pegarus
         g.any pattern.count
       end
 
-      def any_range(pattern)
-        g.fail
-      end
-
       def character(pattern)
         pattern.string.each_char { |b| g.char b }
-      end
-
-      def character_range(pattern)
-        g.fail
       end
 
       def choice(pattern)
