@@ -5,6 +5,20 @@ describe "Pegarus.pattern" do
     Pegarus.pattern(5).should be_an_instance_of(Pegarus::Any)
   end
 
+  it "returns a AnyRange pattern when passed a Range of Integers" do
+    Pegarus.pattern(1..2).should be_an_instance_of(Pegarus::AnyRange)
+    Pegarus.pattern(1...2).should be_an_instance_of(Pegarus::AnyRange)
+  end
+
+  it "returns an Character pattern when passed a String" do
+    Pegarus.pattern("abc").should be_an_instance_of(Pegarus::Character)
+  end
+
+  it "returns a CharacterRange pattern when passed a Range of Strings" do
+    Pegarus.pattern("a".."z").should be_an_instance_of(Pegarus::CharacterRange)
+    Pegarus.pattern("a"..."z").should be_an_instance_of(Pegarus::CharacterRange)
+  end
+
   it "returns a Set pattern when passed an Array" do
     Pegarus.pattern(["abc"]).should be_an_instance_of(Pegarus::Set)
   end
@@ -15,20 +29,6 @@ describe "Pegarus.pattern" do
 
   it "returns a Never pattern when passed false" do
     Pegarus.pattern(false).should be_an_instance_of(Pegarus::Never)
-  end
-
-  it "returns an Exact pattern when passed a String" do
-    Pegarus.pattern("abc").should be_an_instance_of(Pegarus::Character)
-  end
-
-  it "returns a AnyRange pattern when passed a Range of Integers" do
-    Pegarus.pattern(1..2).should be_an_instance_of(Pegarus::AnyRange)
-    Pegarus.pattern(1...2).should be_an_instance_of(Pegarus::AnyRange)
-  end
-
-  it "returns a CharRange pattern when passed a Range of Strings" do
-    Pegarus.pattern("a".."z").should be_an_instance_of(Pegarus::CharacterRange)
-    Pegarus.pattern("a"..."z").should be_an_instance_of(Pegarus::CharacterRange)
   end
 
   it "returns the instance unmodified when passed a Pattern" do
@@ -44,7 +44,7 @@ describe "Pegarus.pattern" do
     Pegarus.pattern(nil).should be_nil
   end
 
-  it "raises a Pegarus::InvalidPatternError when passed a Object" do
+  it "raises a Pegarus::InvalidPatternError when passed an Object" do
     lambda { Pegarus.pattern(Object.new) }.should raise_error(Pegarus::InvalidPatternError)
   end
 
@@ -119,5 +119,14 @@ describe "Pegarus#*" do
     pattern.should be_an_instance_of(Pegarus::Product)
     pattern.pattern.should equal(p1)
     pattern.count.should == 2
+  end
+
+  it "takes the absolute value of the multiplier" do
+    p1 = Pegarus.pattern("a")
+    pattern = p1 * -3
+
+    pattern.should be_an_instance_of(Pegarus::Product)
+    pattern.pattern.should equal(p1)
+    pattern.count.should == 3
   end
 end

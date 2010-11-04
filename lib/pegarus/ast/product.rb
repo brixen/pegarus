@@ -4,7 +4,7 @@ module Pegarus
 
     def initialize(pattern, count)
       @pattern = Pegarus.pattern pattern
-      @count = Type.coerce_to count, Integer, :to_int
+      @count = Type.coerce_to(count, Integer, :to_int).abs
     end
 
     def visit(visitor)
