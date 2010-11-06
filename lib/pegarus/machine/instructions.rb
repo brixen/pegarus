@@ -65,6 +65,10 @@ module Pegarus
         end
       end
 
+      instruction :end do |state|
+        state.finish
+      end
+
       # Extended instructions
 
       instruction :any do |state, count|

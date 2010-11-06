@@ -55,6 +55,22 @@ module Pegarus
         g.fail
       end
 
+      def grammar(pattern)
+        start = pattern.get_variable pattern.start
+        start.visit self
+        g.end_label.set!
+        g.end
+
+        until g.rules.empty?
+          rule = g.rules.shift
+          label = g.label_for rule
+
+          label.set!
+          rule.pattern.visit self
+          g.return
+        end
+      end
+
       def if(pattern)
         fail = g.new_label
         pass = g.new_label
@@ -98,6 +114,12 @@ module Pegarus
         pattern.pattern.visit self
         g.fail_twice
         lbl.set!
+      end
+
+      def variable(pattern)
+        label = g.label_for pattern
+        g.call label
+        g.jump g.end_label
       end
     end
   end

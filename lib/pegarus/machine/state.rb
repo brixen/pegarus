@@ -13,6 +13,15 @@ module Pegarus
         @stack    = []
         @captures = []
         @failure  = false
+        @finished = false
+      end
+
+      def finished?
+        @finished
+      end
+
+      def finish
+        @finished = true
       end
 
       def failure?

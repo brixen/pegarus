@@ -52,5 +52,9 @@ module Pegarus
         get_variable name
       end
     end
+
+    def visit(visitor)
+      visitor.grammar self
+    end
   end
 end

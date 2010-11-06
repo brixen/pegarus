@@ -11,5 +11,9 @@ module Pegarus
       @name = name.to_sym
       @pattern = Pegarus.pattern pattern
     end
+
+    def visit(visitor)
+      visitor.variable self
+    end
   end
 end
