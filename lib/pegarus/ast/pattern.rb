@@ -9,8 +9,6 @@ module Pegarus
       Any.new spec
     when String
       Character.new spec
-    when Symbol
-      variable spec
     when Pattern
       spec
     when true

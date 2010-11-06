@@ -26,10 +26,6 @@ describe "Pegarus.pattern" do
     Pegarus.pattern(pattern).should equal(pattern)
   end
 
-  it "returns a Variable when passed a Symbol" do
-    Pegarus.pattern(:S).should be_an_instance_of(Pegarus::Variable)
-  end
-
   it "returns nil when passed nil" do
     Pegarus.pattern(nil).should be_nil
   end
