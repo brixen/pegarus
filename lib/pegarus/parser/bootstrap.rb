@@ -10,7 +10,8 @@ module Pegarus
       g = grammar   = grammar(:grammar)
       g.grammar     = (g.nonterminal + "=" + g.sp + g.pattern) * 1
       g.pattern     = g.alternative + (pattern("/") + g.sp + g.alternative) * 0
-      g.alternative = ((+g.predicate + g.predicate) + g.sp + g.suffix) * 1
+      g.alternative = ((+g.predicate + g.predicate + g.sp + g.suffix) /
+                      (g.sp + g.suffix)) * 1
       g.predicate   = ["!&"]
       g.suffix      = g.primary + (pattern(["*+?"]) + g.sp) * 0
       g.primary     = (pattern("(") + g.sp + g.pattern + ")" + g.sp) / (pattern(1) + g.sp) /

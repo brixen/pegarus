@@ -58,8 +58,7 @@ module Pegarus
       def grammar(pattern)
         start = pattern.get_variable pattern.start
         start.visit self
-        g.end_label.set!
-        g.end
+        g.jump g.end_label
 
         until g.rules.empty?
           rule = g.rules.shift
@@ -69,6 +68,9 @@ module Pegarus
           rule.pattern.visit self
           g.return
         end
+
+        g.end_label.set!
+        g.end
       end
 
       def if(pattern)
@@ -119,7 +121,6 @@ module Pegarus
       def variable(pattern)
         label = g.label_for pattern
         g.call label
-        g.jump g.end_label
       end
     end
   end
