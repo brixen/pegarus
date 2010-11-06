@@ -17,6 +17,14 @@ class Module
   end
 end
 
+class Object
+  unless method_defined? :metaclass
+    def metaclass
+      class << self; self; end
+    end
+  end
+end
+
 unless defined?(Type)
   module Type
     def self.coerce_to(obj, cls, meth)
