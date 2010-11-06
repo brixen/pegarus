@@ -27,7 +27,7 @@ module Pegarus
 
     def set_variable(name, pattern)
       variable = get_variable name
-      variable.pattern = pattern
+      variable.pattern = Pegarus.pattern pattern
       variable
     end
 

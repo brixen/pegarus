@@ -47,8 +47,14 @@ end
 describe "Pegarus::Grammar" do
   it "returns a Variable instance with the name of the method invoked" do
     grammar = Pegarus.grammar
-    variable = grammar.pattern
-    variable.name.should == :pattern
+    variable = grammar.start_rule
+    variable.name.should == :start_rule
     variable.pattern.should be_nil
+  end
+
+  it "converts the pattern into a Pegarus pattern" do
+    grammar = Pegarus.grammar
+    grammar.start_rule = ["!&"]
+    grammar.start_rule.pattern.should be_an_instance_of(Pegarus::Set)
   end
 end
