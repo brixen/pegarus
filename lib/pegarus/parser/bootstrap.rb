@@ -7,20 +7,21 @@ module Pegarus
     end
 
     def peg
-      sp          = pattern([" \t\n"]) * 0
-      nonterminal = (pattern("_") / pattern("a".."z") / pattern("A".."Z")) * 1 + sp
-      char_class  = (pattern("[") + (-pattern("]") + ((pattern(1) + pattern("-") +
-                    pattern(1)) / pattern(1))) * 0) + pattern("]") + sp
-      literal     = pattern("'") + (-pattern("'") + pattern(1)) * 0 + pattern("'") + sp
-      primary     = (pattern("(") + sp + :pattern + pattern(")") + sp) /
-                    (pattern(1) + sp) / literal / char_class / (nonterminal + -pattern("="))
-      suffix      = primary + (pattern(["*+?"]) + sp) * 0
-      predicate   = pattern(["!&"])
-      alternative = ((+predicate + predicate) + sp + suffix) * 1
-      pattern     = alternative + (pattern("/") + sp + alternative) * 0
-      grammar     = (nonterminal + pattern("=") + sp + pattern) * 1
+      g = grammar   = grammar(:grammar)
+      g.grammar     = (g.nonterminal + "=" + g.sp + g.pattern) * 1
+      g.pattern     = g.alternative + (pattern("/") + g.sp + g.alternative) * 0
+      g.alternative = ((+g.predicate + g.predicate) + g.sp + g.suffix) * 1
+      g.predicate   = ["!&"]
+      g.suffix      = g.primary + (pattern(["*+?"]) + g.sp) * 0
+      g.primary     = (pattern("(") + g.sp + g.pattern + ")" + g.sp) / (pattern(1) + g.sp) /
+                      g.literal / g.char_class / (g.nonterminal + -pattern("="))
+      g.literal     = pattern("'") + (-pattern("'") + 1) * 0 + "'" + g.sp
+      g.char_class  = (pattern("[") + (-pattern("]") +
+                      ((pattern(1) + "-" + 1) / 1)) * 0) + "]" + g.sp
+      g.nonterminal = (pattern("_") / ["a".."z"] / ["A".."Z"]) * 1 + g.sp
+      g.sp          = pattern([" \t\n"]) * 0
 
-      Pegarus.grammar :grammar, grammar
+      grammar
     end
   end
 end
