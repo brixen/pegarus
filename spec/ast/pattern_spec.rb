@@ -5,6 +5,12 @@ describe "Pegarus.pattern" do
     Pegarus.pattern(5).should be_an_instance_of(Pegarus::Any)
   end
 
+  it "returns an If Any pattern when passed a negative Integer" do
+    pat = Pegarus.pattern(-1)
+    pat.should be_an_instance_of(Pegarus::If)
+    pat.pattern.should be_an_instance_of(Pegarus::Any)
+  end
+
   it "returns an Character pattern when passed a String" do
     Pegarus.pattern("abc").should be_an_instance_of(Pegarus::Character)
   end

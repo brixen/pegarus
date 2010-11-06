@@ -6,7 +6,9 @@ module Pegarus
     when Array
       Set.new spec
     when Integer
-      Any.new spec
+      node = Any.new spec.abs
+      node = If.new node if spec < 0
+      node
     when String
       Character.new spec
     when Pattern
