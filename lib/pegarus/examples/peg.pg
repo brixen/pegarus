@@ -1,7 +1,8 @@
 grammar     = (nonterminal '=' sp pattern)+
 pattern     = alternative ('/' sp alternative)*
-alternative = ([!&]? sp suffix)+
+alternative = ([!&]? sp suffix capture?)+
 suffix      = primary ([*+?] sp)*
+capture     = '{' (!'}' .)* '}' sp
 primary     = '(' sp pattern ')' sp / '.' sp / literal /
               char_class / nonterminal !'='
 literal     = ['] (!['] .)* ['] sp
