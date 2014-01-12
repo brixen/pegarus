@@ -1,24 +1,13 @@
-Gem::Specification.new do |s|
-  require File.expand_path('../lib/pegarus/version', __FILE__)
+# coding: utf-8
+require './lib/pegarus/version'
 
-  s.name                      = "pegarus"
-  s.version                   = Pegarus::VERSION.to_s
-
-  s.specification_version     = 2 if s.respond_to? :specification_version=
-
-  s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
-  s.authors                   = ["Brian Ford"]
-  s.date                      = %q{2010-10-24}
-  s.email                     = %q{brixen@gmail.com}
-  s.has_rdoc                  = true
-  s.extra_rdoc_files          = %w[ README LICENSE ]
-  s.executables               = []
-  s.files                     = Dir[ '{bin,lib,spec}/**/*.{yaml,txt,rb}', 'Rakefile', *s.extra_rdoc_files ]
-  s.homepage                  = %q{http://github.com/brixen/pegarus}
-  s.require_paths             = ["lib"]
-  s.rubygems_version          = %q{1.3.5}
-  s.summary                   = "Pegarus is an implementation of LPEG in Ruby."
-  s.description               = <<EOS
+Gem::Specification.new do |spec|
+  spec.name                      = "pegarus"
+  spec.version                   = Pegarus::VERSION
+  spec.authors                   = ["Brian Ford"]
+  spec.email                     = ["brixen@gmail.com"]
+  spec.summary                   = "Pegarus is an implementation of LPEG in Ruby."
+  spec.description               = <<EOS
 Pegarus is, broadly, an implementation of LPEG on Rubinius. LPEG implements a
 Parsing Expression Grammar using a parsing machine rather than the Packrat
 algorithm. (See "A Text Pattern-Matching Tool based on Parsing Expression
@@ -30,8 +19,15 @@ a simple AST-walking evaluator. A second option is an implementation of the
 LPEG parsing machine. A third option is a compiler that targets Rubinius
 bytecode.
 EOS
+  spec.homepage      = "https://github.com/brixen/pegarus"
+  spec.license       = "BSD"
 
-  s.rdoc_options << '--title' << 'Pegarus Gem' <<
-                   '--main' << 'README' <<
-                   '--line-numbers'
+  spec.files         = `git ls-files`.split($/)
+  spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
+  spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
+  spec.require_paths = ["lib"]
+
+  spec.add_development_dependency "bundler", "~> 1.5"
+  spec.add_development_dependency "rake", "~> 10.0"
+  spec.add_development_dependency "mspec", "~> 1.5"
 end
