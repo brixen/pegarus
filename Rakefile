@@ -1,4 +1,4 @@
-require 'rake/gempackagetask'
+require "bundler/gem_tasks"
 
 task :default => :spec
 
@@ -28,6 +28,3 @@ namespace :spec do
   desc "Run the specs with all engines"
   task :all => [:rbx, :ruby]
 end
-
-spec = Gem::Specification.load 'pegarus.gemspec'
-Rake::GemPackageTask.new(spec){ |pkg| pkg.gem_spec = spec }
