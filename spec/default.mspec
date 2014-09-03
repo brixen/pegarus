@@ -1,6 +1,6 @@
 # vim: filetype=ruby
 
-require 'spec/custom/guards/engine'
+require_relative 'custom/guards/engine'
 
 class MSpecScript
   tags_dir = defined?(RUBY_ENGINE) ? RUBY_ENGINE : 'ruby'
