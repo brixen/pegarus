@@ -1,6 +1,6 @@
 module Pegarus
   module Rubinius
-    class Generator < ::Rubinius::Generator
+    class Generator < ::Rubinius::ToolSets::Runtime::Generator
       attr_reader :done
       attr_accessor :fail
 
